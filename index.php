@@ -14,7 +14,8 @@
    * Execute current action and store result in $currentController
    * $currentController is accessible in template file
    */
-    $currentController = $controllerModel->$controllerAction();
+    $serverData = $controllerModel->$controllerAction();
+
     $includeFrontend = "frontend/".$actionHandler->getController()."/".$actionHandler->getAction().".php" ;
 
     include($includeFrontend);
