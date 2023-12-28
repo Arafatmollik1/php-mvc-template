@@ -84,5 +84,26 @@ class Handler
 		}
 		return false;
 	}
+	   /**
+     * Check if the CSS file for the current controller exists.
+     *
+     * @return bool Returns true if the CSS file exists, false otherwise.
+     */
+    public function isCssDefined() {
+		global $config;
+        $cssFilePath =  $config->basePath. "/assets/css/" . $this->controller . ".css";
+        return file_exists($cssFilePath);
+    }
+
+    /**
+     * Check if the JS file for the current controller exists.
+     *
+     * @return bool Returns true if the JS file exists, false otherwise.
+     */
+    public function isJsDefined() {
+		global $config;
+        $jsFilePath = $config->basePath . "/assets/js/" . $this->controller . ".js";
+        return file_exists($jsFilePath);
+    }
 
 }

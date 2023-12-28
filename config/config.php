@@ -2,10 +2,10 @@
 /**
  * Application main config
  */
+$baseUrlEnd = '/php-mvc-template';
+$basePath = $_SERVER['DOCUMENT_ROOT'].$baseUrlEnd;
 
-$basePath = $_SERVER['DOCUMENT_ROOT'];
-
-$baseUrl = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'];
+$baseUrl = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$baseUrlEnd ;
 
 // Set and return config
 return (object) array(
@@ -13,7 +13,9 @@ return (object) array(
   'allowed_scripts' => array(
     'index.php'
   ),
-  'baseUrlEnd' =>  '/php-mvc-template',
+  'baseUrlEnd' =>  $baseUrlEnd,
+  'basePath'   => $basePath,
+  'baseUrl'    => $baseUrl,
   // Default MySQL config
   'conn' => array(
     'host'      => 'localhost',
