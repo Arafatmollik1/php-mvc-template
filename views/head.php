@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/<?= $actionHandler->getController(); ?>.css?<?= time(); ?>">   
     <?php endif; ?>
     <!--local js-->
+    <script src="assets/js/common.js?<?= time(); ?>" defer></script>
     <?php if($actionHandler->isJsDefined()): ?>
     <script src="assets/js/<?= $actionHandler->getController(); ?>.js?<?= time(); ?>" defer></script>
     <?php endif; ?>
