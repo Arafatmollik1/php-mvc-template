@@ -13,18 +13,13 @@ return (object) array(
   'allowed_scripts' => array(
     'index.php'
   ),
+  'baseUrlEnd' =>  '/php-mvc-template',
   // Default MySQL config
   'conn' => array(
-    'host'      => '',
-    'name'      => '',
-    'username'  => '',
-    'password'  => '',
-  ),
-  // Available controller
-  'controllers' => array(
-    'index' => array(
-      'model'         => 'Index',
-    ),
+    'host'      => 'localhost',
+    'name'      => 'just_testing',
+    'username'  => 'root',
+    'password'  => 'root',
   ),
 
 );

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-class Index {
+class Home {
 
   public function __construct() {
     return $this;
