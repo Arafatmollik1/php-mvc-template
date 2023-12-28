@@ -1,0 +1,58 @@
+#AuthType Basic
+#AuthName "One does not simply"
+#AuthUserFile /var/www/html/.htpasswd
+#Require valid-user
+
+Order deny,allow
+
+Satisfy any
+
+# Don't allow the .ht files
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
+
+Options +FollowSymLinks
+Options -Indexes
+DirectoryIndex index.php
+
+
+<FilesMatch "\.(ini|psd|log|sh|.DS_Store|old|py|json)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(bmp|css|flv|gif|ico|jpg|jpeg|js|pdf|png|svg|swf|tif|tiff|woff|woff2|eot|ttif)(\.gz)?$">
+    Header set Cache-Control "max-age=2692000, public"
+  </FilesMatch>
+  Header unset ETag
+  Header unset Last-Modified
+</IfModule>
+
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+php_flag log_errors off
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteBase /
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)/$ /$1 [L,R] # <- for test, for prod use [L,R=301]
+
+  # index.html handling
+  #RewriteRule ^index.html$ /index.php [R,L]
+
+  # request redirection to index.php
+  RewriteCond %{REQUEST_URI} !\.(gif|jpg|png|webp|ico|js|css|svg)$
+  #RewriteCond %{HTTP:X-Requested-With} !XMLHttpRequest [NC]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) index.php [QSA,L]
+
+  # rewrites
+
+</ifModule>
