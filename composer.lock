@@ -1,0 +1,83 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "c31b60ac1480ff461e1ed1caca724338",
+    "packages": [
+        {
+            "name": "stefangabos/zebra_session",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stefangabos/Zebra_Session.git",
+                "reference": "744349ebc5d1d6d89967e3ccbcefdc485089ceed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stefangabos/Zebra_Session/zipball/744349ebc5d1d6d89967e3ccbcefdc485089ceed",
+                "reference": "744349ebc5d1d6d89967e3ccbcefdc485089ceed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.8",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Zebra_Session.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Gabos",
+                    "email": "contact@stefangabos.ro",
+                    "homepage": "https://github.com/stefangabos",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A drop-in replacement for PHP's default session handler which stores session data in a MySQL database, providing better performance, better security and protection against session fixation and session hijacking",
+            "homepage": "https://github.com/stefangabos/Zebra_Session",
+            "keywords": [
+                "database",
+                "fixation",
+                "flash",
+                "flashdata",
+                "hijack",
+                "locking",
+                "mysql",
+                "mysqli",
+                "session"
+            ],
+            "support": {
+                "issues": "https://github.com/stefangabos/Zebra_Session/issues",
+                "source": "https://github.com/stefangabos/Zebra_Session/tree/4.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/stefangabos",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-03-24T13:05:38+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

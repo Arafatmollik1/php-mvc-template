@@ -1,0 +1,18 @@
+{
+    "name": "arafatmollik/php-mvc-template",
+    "description": "For fun",
+    "require": {
+        "stefangabos/zebra_session": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arafatmollik\\PhpMvcTemplate\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohammod Arafat Mollik",
+            "email": "arafathossain923@gmail.com"
+        }
+    ]
+}
