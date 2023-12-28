@@ -1,6 +1,7 @@
 <?php
 namespace Helper;
 use mysqli;
+
 /**
  * Manages the database connection using MySQLi.
  *
