@@ -6,11 +6,12 @@
         "guzzlehttp/guzzle": "^7.8",
         "vlucas/phpdotenv": "^5.6",
         "monolog/monolog": "^3.5",
-        "webmozart/assert": "^1.11"
+        "webmozart/assert": "^1.11",
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {
-            "Arafatmollik\\PhpMvcTemplate\\": "src/"
+            "Controllers\\": "src/Controllers/"
         }
     },
     "authors": [

@@ -15,5 +15,12 @@ class Index {
   public function indexAction() {
     return $this;
   }
+  /**
+   * For Unit testing
+   * Fautly code
+   */
+  public function add($a, $b) {
+    return $a + ($b + 1);
+  }
 
 }
