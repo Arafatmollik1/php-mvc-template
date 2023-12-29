@@ -40,7 +40,7 @@ Now you are ready to run the project.
  - session_data
  - session_id
  - session_expire
- - 
+   
 You can also make the table with this query
 `CREATE TABLE sessions (
     hash VARCHAR(32) NOT NULL,
@@ -50,6 +50,7 @@ You can also make the table with this query
     PRIMARY KEY (session_id),
     KEY session_expire (session_expire)
 );
+
 `
 3. **/Views**  ---  Head.php is defined here. You can adjust your head html file. It will be included everywhere.
 4. **Database.** database is declared globally. Make sure to input your database config into the config file. databse helper can be used from global $database. Mysqli object is defined here 
