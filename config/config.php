@@ -25,6 +25,12 @@ return (object) array(
     'username'  =>  $_ENV['DB_USERNAME'],
     'password'  =>  $_ENV['DB_PASSWORD'],
   ),
+  'session' => array(
+    'security_code'       => $_ENV['SESSION_PASSWORD'],
+    'lifetime'            => 60 * 24 * 60 * 60,
+    'lock_to_user_agent'  => true,
+    'lock_to_ip'          => false,
+  ),
 
 );
 
