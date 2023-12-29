@@ -6,6 +6,7 @@ $baseUrlEnd = '/php-mvc-template';
 $basePath = $_SERVER['DOCUMENT_ROOT'].$baseUrlEnd;
 
 $baseUrl = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$baseUrlEnd ;
+$isProduction =  $_ENV['IS_PRODUCTION']; // this must be yes or no
 
 // Set and return config
 return (object) array(
@@ -16,12 +17,13 @@ return (object) array(
   'baseUrlEnd' =>  $baseUrlEnd,
   'basePath'   => $basePath,
   'baseUrl'    => $baseUrl,
+  'isProduction' => $isProduction,
   // Default MySQL config
   'conn' => array(
-    'host'      => 'localhost',
-    'name'      => 'just_testing',
-    'username'  => 'root',
-    'password'  => 'root',
+    'host'      =>  $_ENV['DB_HOST'],
+    'name'      =>  $_ENV['DB_NAME'],
+    'username'  =>  $_ENV['DB_USERNAME'],
+    'password'  =>  $_ENV['DB_PASSWORD'],
   ),
 
 );

@@ -1,10 +1,13 @@
 <?php
+// Load vendor classes
+require_once __DIR__ . '/vendor/autoload.php';
+//loading .env files access them via $_ENV[] with all capital
+$_env = Dotenv\Dotenv::createImmutable(__DIR__);
+$_env->load();
 // Load config
 $config = include('config/config.php');
 // Load src classes
 require_once 'includes/autoload.php';
-// Load vendor classes
-require_once __DIR__ . '/vendor/autoload.php';
 
 // Initiate common helper
 global $commonHelper;

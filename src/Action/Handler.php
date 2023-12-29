@@ -105,5 +105,12 @@ class Handler
         $jsFilePath = $config->basePath . "/assets/js/" . $this->controller . ".js";
         return file_exists($jsFilePath);
     }
-
+	public function isCacheEnabled(){
+		global $config;
+		if ($config->isProduction == 'no' && isset($config->isProduction)) {
+			return '?'.time();
+		} else {
+			return '';
+		}
+	}
 }
