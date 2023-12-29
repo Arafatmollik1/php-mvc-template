@@ -37,7 +37,7 @@ Now you are ready to run the project.
 8. **Js+css Jquery and bootstrap are defined via CDN.** So it is ready to be used. However if you want to create your **own css or js** then make files to assets/css/[your page name].css and assets/js/[your page name].js
 9. You can use the custom made **ApiHelper** to do basic Get, Post, Put, Patch, Delete.
 10. You can use **AssertionLogger** utility to log your backend data into a log file. Example of usage can be found in the AssertionLogger.php file. If used the logs can be found in logs/apps.log file
-11. **Phpunit** is intalled so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php  Checkout Tests/IndexTest.php
+11. **Phpunit** is intalled so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php. After that just do `./vendor/bin/phpunit` from you root and you can see tests. Checkout Tests/IndexTest.php
 12. **Dotenv** is installed so .env file can be used as well.
 13. You can also add actions into the controller. for instance if you have "/something/somethingmore" the `something` is the controller. And in the controller file just do `somethingmoreAction` meaning add Action word at the end of the text and define that a function. and now you have an action inside the controller.
 14. Please check **composer.json and utilites** to see what kind of packages are available to be used.
