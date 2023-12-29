@@ -25,19 +25,29 @@ class Handler
 	}
 	public function getRoute($path) {
 		$uri = $_SERVER['REQUEST_URI'];
-
-		$routePath = trim(str_replace($path, '', $uri), '/');
-
+	
+		// Check if there is a query string, and split the URI if needed
+		if (strpos($uri, '?') !== false) {
+			list($pathUri, $queryString) = explode('?', $uri, 2);
+			// Parse the query string into an associative array
+			parse_str($queryString, $queryParams);
+		} else {
+			$pathUri = $uri;
+			$queryParams = [];
+		}
+	
+		$routePath = trim(str_replace($path, '', $pathUri), '/');
+	
 		$segments = explode('/', $routePath);
-
+	
 		$this->controller = (!isset($segments[0]) || empty($segments[0])) ? 'index' : $segments[0];
 		$this->action = $segments[1] ?? 'index';
-
-
+	
 		return [
 			'controller' => $this->controller,
 			'action' => $this->action,
-			'params' => array_slice($segments, 2)
+			'params' => array_slice($segments, 2),
+			'queryParams' => $queryParams // Return the query parameters separately
 		];
 	}
 
