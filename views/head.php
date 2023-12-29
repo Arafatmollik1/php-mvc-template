@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website Title</title>
     <!-- local stylesheet -->
-    <link rel="stylesheet" href="assets/css/common.css<?= $actionHandler->isCacheEnabled(); ?>">
+    <link rel="stylesheet" href="<?= $config->baseUrlEnd; ?>/assets/css/common.css<?= $actionHandler->isCacheEnabled(); ?>">
     <?php if($actionHandler->isCssDefined()): ?>
-    <link rel="stylesheet" href="assets/css/<?= $actionHandler->getController(); ?>.css<?= $actionHandler->isCacheEnabled(); ?>">   
+    <link rel="stylesheet" href="<?= $config->baseUrlEnd; ?>/assets/css/<?= $actionHandler->getController(); ?>.css<?= $actionHandler->isCacheEnabled(); ?>">   
     <?php endif; ?>
     <!--local js-->
-    <script src="assets/js/common.js<?= $actionHandler->isCacheEnabled(); ?>" defer></script>
+    <script src="<?= $config->baseUrlEnd; ?>/assets/js/common.js<?= $actionHandler->isCacheEnabled(); ?>" defer></script>
     <?php if($actionHandler->isJsDefined()): ?>
-    <script src="assets/js/<?= $actionHandler->getController(); ?>.js<?= $actionHandler->isCacheEnabled(); ?>" defer></script>
+    <script src="<?= $config->baseUrlEnd; ?>/assets/js/<?= $actionHandler->getController(); ?>.js<?= $actionHandler->isCacheEnabled(); ?>" defer></script>
     <?php endif; ?>
     <!-- Bootstrap CSS and jquery-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
