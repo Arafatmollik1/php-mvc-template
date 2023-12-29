@@ -23,6 +23,13 @@ For instance if you are using mamp then your folder should be in
 
 Then change the configuration according to you project name or root folder name in config.php and htaccess.
 Note that there is no .env file so include that into you root directory and add the varibales you can find from config.
+Here is a sample .env file
+`IS_PRODUCTION = no
+DB_HOST=localhost
+DB_NAME=just_testing
+DB_USERNAME=root
+DB_PASSWORD=root
+SESSION_PASSWORD = fdaimoaido1231ads`
 
 Now you are ready to run the project. 
 
@@ -33,6 +40,7 @@ Now you are ready to run the project.
  - session_data
  - session_id
  - session_expire
+ - 
 You can also make the table with this query
 `CREATE TABLE sessions (
     hash VARCHAR(32) NOT NULL,
