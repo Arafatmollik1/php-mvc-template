@@ -31,11 +31,7 @@ DB_USERNAME=root
 DB_PASSWORD=root
 SESSION_PASSWORD = fdaimoaido1231ads`
 
-Now you are ready to run the project. 
-
-## Features
-1. **Config file.** In config.php you can define some of your configurations. You can then use it from global $config anywhere in the codebase.
-2. **session** session management is done via zebra session. can be found in session.php Make sure to have the following coloumns in table called sessions in your database. 
+Make sure to have the following coloumns in table called sessions in your database. 
  - hash
  - session_data
  - session_id
@@ -51,7 +47,11 @@ You can also make the table with this query
     KEY session_expire (session_expire)
 );`
 
+Now you are ready to run the project. 
 
+## Features
+1. **Config file.** In config.php you can define some of your configurations. You can then use it from global $config anywhere in the codebase.
+2. **session** session management is done via zebra session. can be found in session.php 
 3. **/Views**  ---  Head.php is defined here. You can adjust your head html file. It will be included everywhere.
 4. **Database.** database is declared globally. Make sure to input your database config into the config file. databse helper can be used from global $database. Mysqli object is defined here 
 5. **Controller+Helpe**r are stated in /src folder.
