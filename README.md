@@ -49,9 +49,9 @@ You can also make the table with this query
     session_expire INT(11) UNSIGNED NOT NULL,
     PRIMARY KEY (session_id),
     KEY session_expire (session_expire)
-);
+);`
 
-`
+
 3. **/Views**  ---  Head.php is defined here. You can adjust your head html file. It will be included everywhere.
 4. **Database.** database is declared globally. Make sure to input your database config into the config file. databse helper can be used from global $database. Mysqli object is defined here 
 5. **Controller+Helpe**r are stated in /src folder.
