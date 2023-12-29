@@ -205,3 +205,12 @@ class ApiHelper {
         file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
     }
 }
+/* $apiHelper = new ApiHelper('https://jsonplaceholder.typicode.com');
+$response = $apiHelper->get('/todos/1'); // Assuming the endpoint is /api/data
+
+// Check if the response is successful
+if ($apiHelper->isSuccess($response)) {
+    // Parse JSON response
+    $data = $apiHelper->parseJsonResponse($response);
+    print_r($data);
+} */
