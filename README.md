@@ -61,7 +61,7 @@ Now you are ready to run the project.
 9. **Js+css Jquery and bootstrap are defined via CDN.** So it is ready to be used. However if you want to create your **own css or js** then make files to assets/css/[your page name].css and assets/js/[your page name].js
 10. You can use the custom made **ApiHelper** to do basic Get, Post, Put, Patch, Delete.
 11. You can use the custom made mysql query builder which can be found in utility folder. Checkout `SqlBuilder.php`
-12. You can use **AssertionLogger** utility to log your backend data into a log file. Example of usage can be found in the AssertionLogger.php file. If used the logs can be found in logs/apps.log file
+12. You can use **DebugLogger** utility to log your backend data into a log file. Example of usage can be found in the DebugLogger.php file. If used the logs can be found in logs/apps.log file
 13. **Phpunit** is installed so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php. After that just do `./vendor/bin/phpunit` from you root and you can see tests. Checkout Tests/IndexTest.php
 14. **PhpStan** is installed so you are able to catch bugs before it goes to production. Do an automatic testing to your backend by running commad `./vendor/bin/phpstan analyse src/` also level of security check can be increased to 8. Can be found in phpstan.neon
 15. **Dotenv** is installed so .env file can be used as well.
