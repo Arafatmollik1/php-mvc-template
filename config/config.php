@@ -32,6 +32,22 @@ return (object) array(
     'lock_to_ip'          => false,
   ),
 
+  // REST API config
+  // Set common properties and define available endpoints
+  'api_config' => array(
+    'enabled'               => true,
+    'enable_authentication' => true,
+    'authentication' => array(
+      'user'      => $_ENV['LOCAL_API_USER'],
+      'password'  => $_ENV['LOCAL_API_PASSWORD']
+    ),
+    'endpoints' => array(
+      //uri must be lowercase
+      'example' => array(
+        'uri' => '/api/v1/example/getusers',
+      ),
+    )
+  ),
 );
 
 ?>

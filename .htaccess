@@ -39,7 +39,8 @@ php_flag log_errors off
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteBase /php-mvc-template/
-
+# Redirect /api requests to apirouter.php
+RewriteRule ^api apirouter.php [QSA,L]
 # Remove trailing slash (optional)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /php-mvc-template/$1 [L,R=301]
