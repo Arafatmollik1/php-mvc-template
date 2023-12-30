@@ -8,6 +8,12 @@ class Example {
         return $this;
     }
     public function getusersAction($getParamas, $postParams, $jsonData){
-        return "works";
+        $data= [
+            'Text' =>'This is from version1',
+            'If you have any get params here it is' =>$getParamas,
+            'If you have any post params here it is' =>$postParams,
+            'If you have any json params here it is' =>$jsonData,
+        ];
+        return $data;
     }
 }
