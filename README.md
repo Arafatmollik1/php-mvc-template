@@ -58,15 +58,16 @@ Now you are ready to run the project.
 6. To make a new view just put your frontend files into /frontend/[your page name]/index.php
 7. You must make controller by the same name in controller folder
 8. Wheatever you define in the controller then all the properties can be accessed in the frontend via `$serverData`
-9. **Js+css Jquery and bootstrap are defined via CDN.** So it is ready to be used. However if you want to create your **own css or js** then make files to assets/css/[your page name].css and assets/js/[your page name].js
-10. You can use the custom made **ApiHelper** to do basic Get, Post, Put, Patch, Delete.
-11. You can use the custom made mysql query builder which can be found in utility folder. Checkout `SqlBuilder.php`
-12. You can use **DebugLogger** utility to log your backend data into a log file. Example of usage can be found in the DebugLogger.php file. If used the logs can be found in logs/apps.log file
-13. **Phpunit** is installed so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php. After that just do `./vendor/bin/phpunit` from you root and you can see tests. Checkout Tests/IndexTest.php
-14. **PhpStan** is installed so you are able to catch bugs before it goes to production. Do an automatic testing to your backend by running commad `./vendor/bin/phpstan analyse src/` also level of security check can be increased to 8. Can be found in phpstan.neon
-15. **Dotenv** is installed so .env file can be used as well.
-16. You can also add actions into the controller. for instance if you have "/something/somethingmore" the `something` is the controller. And in the controller file just do `somethingmoreAction` meaning add Action word at the end of the text and define that a function. and now you have an action inside the controller.
-17. Please check **composer.json and utilites** to see what kind of packages are available to be used.
+9. **Js+css Jquery and bootstrap+bootstrap icons are defined.** So it is ready to be used. However if you want to create your **own css or js** then make files to assets/css/[your page name].css and assets/js/[your page name].js
+10. **Make you own api**You can make your own api from your own database with very easy setps. Just checkout LocalApi.php and follow the examples on the bottom of the file.
+11. You can use the custom made **ApiHelper** to do basic Get, Post, Put, Patch, Delete.
+12. You can use the custom made mysql query builder which can be found in utility folder. Checkout `SqlBuilder.php`
+13. You can use **DebugLogger** utility to log your backend data into a log file. Example of usage can be found in the DebugLogger.php file. If used the logs can be found in logs/apps.log file
+14. **Phpunit** is installed so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php. After that just do `./vendor/bin/phpunit` from you root and you can see tests. Checkout Tests/IndexTest.php
+15. **PhpStan** is installed so you are able to catch bugs before it goes to production. Do an automatic testing to your backend by running commad `./vendor/bin/phpstan analyse src/` also level of security check can be increased to 8. Can be found in phpstan.neon
+16. **Dotenv** is installed so .env file can be used as well.
+17. You can also add actions into the controller. for instance if you have "/something/somethingmore" the `something` is the controller. And in the controller file just do `somethingmoreAction` meaning add Action word at the end of the text and define that a function. and now you have an action inside the controller.
+18. Please check **composer.json and utilites** to see what kind of packages are available to be used.
 
 
 Thank you and enjoy!
