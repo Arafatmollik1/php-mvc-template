@@ -46,7 +46,8 @@ class LocalApi {
             || !file_exists($_SERVER["SCRIPT_FILENAME"])
             || false === $this->enabled
         ) {
-            $this->terminate(404);
+            $this->terminate(500);
+            exit;
         }
 
         // Current request URI
@@ -160,14 +161,32 @@ class LocalApi {
     }
 
     /**
-       * Set controller (controller class)
-       * @return null
-       */
+     * Set controller 
+     * @return null
+     */
     protected function setController() {
-        if (is_array($this->path) && sizeof($this->path) > 1) {
-            $this->controller = ucfirst(strtolower($this->path[sizeof($this->path) - 2]));
+    
+        // Initialize the best match length to a very small number
+        $bestMatchLength = 0;
+        $this->controller = null;
+    
+        // Iterate through the endpoints
+        foreach ($this->endpoints as $key => $item) {
+            // Check if the endpoint's URI is a substring of $this->uri
+            if (strpos($this->uri, $item['uri']) === 0) {
+                // Calculate the length of the match
+                $matchLength = strlen($item['uri']);
+    
+                // Check if this is the best match so far
+                if ($matchLength > $bestMatchLength) {
+                    $bestMatchLength = $matchLength;
+                    $this->controller = $key;
+                }
+            }
         }
     }
+    
+    
 
     /**
      * Get API request base path
@@ -183,9 +202,14 @@ class LocalApi {
        * Set action (controller method)
        * @return null
        */
-    protected function setAction() {
+      protected function setAction() {
         if (is_array($this->path) && sizeof($this->path) > 1) {
-            $this->action = strtolower($this->path[sizeof($this->path) - 1]);
+            // Extract the last element from $this->path and remove hyphens
+            $actionWithHyphens = $this->path[sizeof($this->path) - 1];
+            $actionWithoutHyphens = str_replace('-', '', $actionWithHyphens);
+    
+            // Convert to lowercase
+            $this->action = strtolower($actionWithoutHyphens);
             $this->actionMethod = $this->action . 'Action';
         }
     }
@@ -242,9 +266,10 @@ class LocalApi {
 
         // Locate API request URI from available endpoints
         $endpoints = $this->endpoints;
+        $lowercaseUri = strtolower($this->uri);
         if (is_array($endpoints) && sizeof($endpoints) > 0) {
             foreach ($endpoints as $key => $item) {
-                if ($item['uri'] == strtolower($this->uri)) {
+                if (strpos($lowercaseUri, strtolower($item['uri'])) !== false) {
                     $this->apiUrl = $item['uri'];
                     break;
                 }
@@ -337,3 +362,27 @@ class LocalApi {
 
    
 }
+
+
+// checkout config.php
+/* 
+This configuration must be in place
+
+'api_config' => array(
+    'enabled'               => true,
+    'enable_authentication' => false,
+    'authentication' => array(
+      'user'      => $_ENV['LOCAL_API_USER'],
+      'password'  => $_ENV['LOCAL_API_PASSWORD']
+    ),
+    'endpoints' => array(
+      'example' => array(
+        'uri' => '/api/v1/example',  <-- here is the endpoint you are going to use
+      ),
+    )
+  ),
+); 
+
+Now create a file under src/Controllers/Api/V1/<lastpoint>.php
+now follow src/Controllers/Api/V1/Example.php
+*/

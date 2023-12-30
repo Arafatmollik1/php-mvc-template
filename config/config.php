@@ -36,15 +36,17 @@ return (object) array(
   // Set common properties and define available endpoints
   'api_config' => array(
     'enabled'               => true,
-    'enable_authentication' => true,
+    'enable_authentication' => false,
     'authentication' => array(
       'user'      => $_ENV['LOCAL_API_USER'],
       'password'  => $_ENV['LOCAL_API_PASSWORD']
     ),
     'endpoints' => array(
-      //uri must be lowercase
-      'example' => array(
-        'uri' => '/api/v1/example/getusers',
+      'example' => array( //this is the name of controller, all small letter and no hyphens
+        'uri' => '/api/v1/example',//uri can have hyphens and letter case font matter
+      ),
+      'exampletwo' => array(
+        'uri' => '/api/v2/example',
       ),
     )
   ),
