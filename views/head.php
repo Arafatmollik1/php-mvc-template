@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website Title</title>
-    <!-- Bootstrap css -->
+    <!-- Bootstrap css and bootstrap icons -->
     <link rel="stylesheet" href="<?= $config->baseUrlEnd; ?>/assets/css/bootstrap-css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- local stylesheet -->
     <link rel="stylesheet" href="<?= $config->baseUrlEnd; ?>/assets/css/common.css<?= $actionHandler->isCacheEnabled(); ?>">
     <?php if($actionHandler->isCssDefined()): ?>
