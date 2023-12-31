@@ -18,6 +18,8 @@
 
     $includeFrontend = "frontend/".$actionHandler->getController()."/".$actionHandler->getAction().".php" ;
     include 'views/head.php';
+    include 'views/header.php';
     include($includeFrontend);
+    include 'views/footer.php';
 
 ?>
