@@ -17,9 +17,11 @@
     $serverData = $controllerModel->$controllerAction();
 
     $includeFrontend = "frontend/".$actionHandler->getController()."/".$actionHandler->getAction().".php" ;
+
+    //This is the basic layout
     include 'views/head.php';
     include 'views/header.php';
-    include($includeFrontend);
+    include($includeFrontend); //main body
     include 'views/footer.php';
 
 ?>
