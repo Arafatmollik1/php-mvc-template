@@ -1,0 +1,9 @@
+.bg-green-round{
+    color: #8CAA34;
+    padding: 2px 5px 2px 5px ;
+    background-color: #D2E892;
+    border-radius: 5%;
+}
+.btn-green{
+    background-color: #D2E892;
+}
