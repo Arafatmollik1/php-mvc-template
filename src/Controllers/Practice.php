@@ -9,11 +9,10 @@ class Practice {
     return $this;
   }
 
-  /**
-   * Index page
-   * @return $this
-   */
   public function indexAction() {
+    return $this;
+  }
+  public function formpracticeAction() {
     return $this;
   }
 
