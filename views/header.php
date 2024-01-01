@@ -5,8 +5,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="home">Home </a>
-      <a class="nav-item nav-link active" href="practice">Practice </a>
+      <a class="nav-item nav-link active" href="<?= $config->baseUrlEnd; ?>/home">Home </a>
+      <a class="nav-item nav-link active" href="<?= $config->baseUrlEnd; ?>/practice">Practice </a>
+      <a class="nav-item nav-link active" href="<?= $config->baseUrlEnd; ?>/practice/form-practice">From </a>
     </div>
   </div>
 </nav>
