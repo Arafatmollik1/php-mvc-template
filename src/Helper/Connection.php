@@ -2,43 +2,45 @@
 namespace Helper;
 use mysqli;
 
-/**
- * Manages the database connection using MySQLi.
- *
- * This class provides a means to establish a connection to a MySQL database
- * utilizing the MySQLi extension. It attempts to connect using configuration
- * parameters and will terminate the script with an error message if the connection fails.
- *
- * Usage example:
- * $connection = new Connection();
- * $db = $connection->getDatabase();
- *
- * @property mysqli $database The MySQLi object representing the database connection.
- */
 class Connection
 {
     /**
      * @var mysqli The MySQLi object representing the database connection.
      */
-    public $database;
+    private $database;
+
+    /**
+     * @var Connection The single instance of the class
+     */
+    private static $instance = null;
+
     /**
      * Constructor for the Connection class.
-     *
-     * Establishes a connection to the MySQL database using the configuration parameters.
-     * On failure, the script is terminated with an error message.
-     *
-     * @global object $config Contains the database configuration settings.
-     * @throws \Exception If the connection to the database fails.
+     * Made private to prevent creating multiple instances.
      */
-    public function __construct()
+    private function __construct()
     {
         global $config;
         $this->database = new mysqli($config->conn['host'], $config->conn['username'], $config->conn['password'], $config->conn['name']);
-        if ($this->database->connect_error){
-            die("Connection failed:  ".$this->database->connect_error);
+        if ($this->database->connect_error) {
+            throw new \Exception("Connection failed: " . $this->database->connect_error);
         }
     }
-        /**
+
+    /**
+     * Gets the single instance of the Connection class.
+     *
+     * @return Connection The single instance of the Connection class
+     */
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new Connection();
+        }
+        return self::$instance;
+    }
+
+    /**
      * Retrieves the MySQLi database connection object.
      *
      * @return mysqli The MySQLi object representing the database connection.
@@ -48,6 +50,16 @@ class Connection
         return $this->database;
     }
 
-}
+    // Prevent cloning of the instance
+    private function __clone() {}
 
-?>
+    /**
+     * Prevents unserialization of the instance.
+     * 
+     * @throws \Exception If someone tries to unserialize the instance.
+     */
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
+    }
+}

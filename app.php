@@ -13,9 +13,9 @@ require_once 'includes/autoload.php';
 global $commonHelper;
 $commonHelper = new Helper\Common();
 //setup database connection
-$connection = new Helper\Connection();
+$connection = Helper\Connection::getInstance();
 global $database;
-$database = $connection->database;
+$database = $connection->getDatabase();
 require_once 'includes/session.php';
 // Set request data and apply action handler
 require_once 'includes/action.php';
