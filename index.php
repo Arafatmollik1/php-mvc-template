@@ -9,6 +9,8 @@
     include 'views/404page.php';
     exit();
   }
+  global $urlData;
+  $urlData = $actionHandler->getUrldata() ?? [];
 
   /**
    * Execute current action and store result in $currentController

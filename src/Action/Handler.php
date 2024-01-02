@@ -42,13 +42,6 @@ class Handler
 	
 		$this->controller = (!isset($segments[0]) || empty($segments[0])) ? 'index' : $segments[0];
 		$this->action = $segments[1] ?? 'index';
-	
-		return [
-			'controller' => $this->controller,
-			'action' => $this->action,
-			'params' => array_slice($segments, 2),
-			'queryParams' => $queryParams // Return the query parameters separately
-		];
 	}
 
 
@@ -97,6 +90,40 @@ class Handler
 		}
 		return null;
 	}
+	/**
+	 * Retrieves URL segments that come after the specified action in the current URL.
+	 *
+	 * This function parses the current URL and returns an array of segments that follow
+	 * the action segment. It is useful for extracting additional path information
+	 * in a MVC framework structure.
+	 *
+	 * @return array Returns an array of URL segments after the action.
+	 */
+	public function getUrldata() : array {
+		global $config;
+		$result=[
+			'controller' => $this->controller,
+			'action' => $this->action,
+		];
+		$url = $_SERVER['REQUEST_URI'];
+	
+		// Remove the base path and query string from the URL
+		$path = str_replace($config->baseUrlEnd, '', parse_url($url, PHP_URL_PATH));
+	
+		// Split the URL into segments
+		$segments = explode('/', $path);
+	
+		// Find the position of the action in the segments
+		$actionPosition = array_search($this->action, $segments);
+	
+		// Return segments after the action
+		if ($actionPosition !== false && $actionPosition < count($segments) - 1) {
+			$result['urlPathsAfterAction'] = array_slice($segments, $actionPosition + 1);
+			return $result;
+		}
+	
+		return $result;
+	}	
 	   /**
      * Check if the CSS file for the current controller exists.
      *
