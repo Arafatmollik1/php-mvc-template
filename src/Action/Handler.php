@@ -76,7 +76,7 @@ class Handler
 		// Error handling if the controller class does not exist
 		$className = "Controllers\\" . ucwords($this->controller);
 		if (!class_exists($className)) {
-			throw new \Exception("Controller not found: " . $className);
+			return null;
 		}
 
 		$classModel = new $className;
@@ -88,11 +88,14 @@ class Handler
 	 * @return string
 	 */
 	public function getControllerAction($model) {
+		if(!isset($model)){
+			return null;
+		}
 		$method = str_replace('-', '', $this->action).'Action';
 		if (method_exists($model, $method)) {
 			return $method;
 		}
-		return false;
+		return null;
 	}
 	   /**
      * Check if the CSS file for the current controller exists.

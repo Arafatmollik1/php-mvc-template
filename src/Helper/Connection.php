@@ -21,10 +21,16 @@ class Connection
     private function __construct()
     {
         global $config;
-        $this->database = new mysqli($config->conn['host'], $config->conn['username'], $config->conn['password'], $config->conn['name']);
-        if ($this->database->connect_error) {
-            throw new \Exception("Connection failed: " . $this->database->connect_error);
+        try{
+            $this->database = new mysqli($config->conn['host'], $config->conn['username'], $config->conn['password'], $config->conn['name']);
+        }catch(\Exception){
+            http_response_code(500);
+            include 'views/500page.php';
+            exit();
         }
+/*         if ($this->database->connect_error) {
+            throw new \Exception("Connection failed: " . $this->database->connect_error);
+        } */
     }
 
     /**
