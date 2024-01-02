@@ -16,6 +16,13 @@ $commonHelper = new Helper\Common();
 $connection = Helper\Connection::getInstance();
 global $database;
 $database = $connection->getDatabase();
+$isMaintenanceMode = $config->maintenance['enabled']; 
+
+if ($isMaintenanceMode) {
+    http_response_code(503); // 503 Service Unavailable
+    include 'views/503page.php'; 
+    exit();
+}
 require_once 'includes/session.php';
 // Set request data and apply action handler
 require_once 'includes/action.php';

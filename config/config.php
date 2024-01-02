@@ -7,6 +7,7 @@ $basePath = $_SERVER['DOCUMENT_ROOT'].$baseUrlEnd;
 
 $baseUrl = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].$baseUrlEnd ;
 $isProduction =  $_ENV['IS_PRODUCTION']; // this must be yes or no
+$isMaintenanceEnabled = isset($_ENV['MAINTENANCE_ENABLED']) ?  ($_ENV['MAINTENANCE_ENABLED']  == 'yes' ? true : false) : false;
 
 // Set and return config
 return (object) array(
@@ -24,6 +25,9 @@ return (object) array(
     'name'      =>  $_ENV['DB_NAME'],
     'username'  =>  $_ENV['DB_USERNAME'],
     'password'  =>  $_ENV['DB_PASSWORD'],
+  ),
+  'maintenance' =>  array(
+    'enabled'    =>  $isMaintenanceEnabled,
   ),
   'session' => array(
     'security_code'       => $_ENV['SESSION_PASSWORD'],
