@@ -1,6 +1,7 @@
 {
     "name": "arafatmollik/php-mvc-template",
     "description": "For fun",
+    "license": "proprietary",
     "require": {
         "stefangabos/zebra_session": "^4.0",
         "guzzlehttp/guzzle": "^7.8",
