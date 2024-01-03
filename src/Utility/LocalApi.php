@@ -311,7 +311,7 @@ class LocalApi {
 
     protected function getRequestClassName() {
         $path = "\\" . str_replace("/", "\\", $this->apiPath) . "\\";
-        $class = "Controllers" . $path . $this->controller;
+        $class = "Src\\Controllers" . $path . $this->controller;
         return $class;
     }
 
