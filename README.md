@@ -4,7 +4,7 @@ This is a basic php mvc template you can use to build basic mvc application.
 ## Prerequisites
 - PHP, Composer
 - Apache server such as Mamp or Xamp
-- Mysql
+- Mysql 
 
 ## Install 
 Download the codebase or git clone.
