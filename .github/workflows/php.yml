@@ -11,11 +11,14 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Update Composer dependencies
+      run: composer update --prefer-dist --no-progress --no-interaction
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -30,9 +33,11 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      run: composer install --prefer-dist --no-progress --no-interaction
+
     - name: Run test suite
       run: ./vendor/bin/pest
+
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
