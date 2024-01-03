@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Api\V1;
+namespace Src\Controllers\Api\V1;
 
 class Example {
 

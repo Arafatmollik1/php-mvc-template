@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers\Api\V2;
+namespace Src\Controllers\Api\V2;
 
 class Exampletwo {
 

@@ -1,5 +1,6 @@
 <?php
-namespace Helper;
+namespace Src\Helper;
+use Config\Config;
 use mysqli;
 
 class Connection
@@ -20,10 +21,10 @@ class Connection
      */
     private function __construct()
     {
-        global $config;
+        $config = Config::getInstance()->config;
         try{
-            $this->database = new mysqli($config->conn['host'], $config->conn['username'], $config->conn['password'], $config->conn['name']);
-        }catch(\Exception){
+            $this->database = new mysqli($config->conn['host'], $config->conn['username'], $config->conn['password'], $config->conn['name'],9999);
+        }catch(\mysqli_sql_exception $ex){
             http_response_code(500);
             include 'views/500page.php';
             exit();

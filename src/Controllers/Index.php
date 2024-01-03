@@ -1,6 +1,7 @@
 <?php
 
-namespace Controllers;
+namespace Src\Controllers;
+use Src\Utility\SqlBuilder;
 
 class Index {
 
@@ -17,10 +18,10 @@ class Index {
   }
   /**
    * For Unit testing
-   * Fautly code
    */
-  public function add($a, $b) {
-    return $a + ($b + 1);
+  public function getUserInfo($tablename) { 
+    $result = (new SqlBuilder)->read("*")->from($tablename)->execute();
+    return $result;
   }
 
 }

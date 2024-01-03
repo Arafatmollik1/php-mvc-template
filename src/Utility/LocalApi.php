@@ -1,6 +1,7 @@
 <?php
 
-namespace Utility;
+namespace Src\Utility;
+use Config\Config;
 
 
 class LocalApi {
@@ -31,11 +32,13 @@ class LocalApi {
     // API request URL
     public $apiPath = null;
     public $apiUrl  = null;
+    public $config;
 
     /**
      * Initiate API helper and set common properties
      */
     public function __construct() {
+        $this->config = Config::getInstance()->config;
         // Get config properties and set common params
         $this->setConfig();
 
@@ -82,12 +85,11 @@ class LocalApi {
      * @return null
      */
     protected function setConfig() {
-        global $config;
-        if (isset($config->api_config)) {
-            $this->apiConfig = $config->api_config;
-            $this->enabled = $config->api_config['enabled'];
-            if (isset($config->api_config['endpoints'])) {
-                $this->endpoints = $config->api_config['endpoints'];
+        if (isset($this->config->api_config)) {
+            $this->apiConfig = $this->config->api_config;
+            $this->enabled = $this->config->api_config['enabled'];
+            if (isset($this->config->api_config['endpoints'])) {
+                $this->endpoints = $this->config->api_config['endpoints'];
             }
         }
     }
@@ -113,15 +115,14 @@ class LocalApi {
      * @return null
      */
     protected function setUri() {
-        global $config;
     
         if (isset($_SERVER["REQUEST_URI"]) && !empty($_SERVER["REQUEST_URI"])) {
             // Remove query string from the URI
             $uri = strtok($_SERVER["REQUEST_URI"], '?');
     
             // Remove base URL from the URI
-            if (!empty($config->baseUrlEnd)) {
-                $uri = substr($uri, strlen($config->baseUrlEnd)); 
+            if (!empty($this->config->baseUrlEnd)) {
+                $uri = substr($uri, strlen($this->config->baseUrlEnd)); 
             }
     
             $this->uri = $uri;
@@ -219,8 +220,7 @@ class LocalApi {
      * @var boolean
      */
     protected function isUserPassValid($str) {
-        global $config;
-        $user_pass = $config->api_config['authentication']['user'].':'.$config->api_config['authentication']['password'];
+        $user_pass = $this->config->api_config['authentication']['user'].':'.$this->config->api_config['authentication']['password'];
         if ($user_pass === $str) {
             return true;
         }
@@ -232,7 +232,6 @@ class LocalApi {
      * @return boolean [description]
      */
     protected function isHeadersValid() {
-        global $logger, $config;
 
         if (!$this->apiConfig['enable_authentication']) {
             return true;
@@ -255,7 +254,6 @@ class LocalApi {
      * @return void
      */
     public function processApiRequest() {
-        global $link;
 
         // Verify headers
         //This checks if credentials are matching

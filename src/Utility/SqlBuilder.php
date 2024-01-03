@@ -1,5 +1,6 @@
 <?php
-namespace Utility;
+namespace Src\Utility;
+use Src\Helper\Connection;
 class SqlBuilder {
     private $query = '';
     private $type = '';
@@ -42,7 +43,8 @@ class SqlBuilder {
     }
 
     public function execute() {
-        global $database; // Access the global $database variable
+        $connection = Connection::getInstance();
+        $database = $connection->getDatabase();
     
         // Prepare the statement
         $stmt = $database->prepare($this->getSQL());

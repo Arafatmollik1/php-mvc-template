@@ -1,5 +1,6 @@
 <?php
-namespace Utility;
+namespace Src\Utility;
+use Config\Config;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\ErrorLogHandler;
@@ -8,13 +9,14 @@ class DebugLogger
 {
     private $logger;
     const LOGGER_PATH = '/logs';
+    public $config;
 
     public function __construct($logChannel = 'default')
     {
-        global $config;
+        $this->config = Config::getInstance()->config;
         $this->logger = new Logger($logChannel);
         // Define a log path relative to the project root
-        $logDirectory = $config->basePath . self::LOGGER_PATH;
+        $logDirectory = $this->config->basePath . self::LOGGER_PATH;
 
         // Check if the directory exists, if not, create it
         if (!file_exists($logDirectory)) {

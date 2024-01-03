@@ -1,30 +1,39 @@
 <?php
 
-namespace Action;
+namespace Src\Action;
+use Config\Config;
 
 /**
  * Request validator and action handler
  */
 class Handler
 {
-	// Current page action
+    private static $instance = null;
+
+    // Current page action
 	public $action = 'index';
 
 	// Current controller
 	public $controller = 'index'; // default index
+	public $config;
 
 	protected $pathStructure = "";
 
-	public function __construct() {
+
+    /**
+     * Constructor for the Handler class.
+     * Made private to prevent creating multiple instances.
+     */
+    private function __construct() {
+		$this->config = Config::getInstance()->config;
 		$this->setPathStructure();
 		$this->getRoute($this->pathStructure);
-	}
+    }
 	protected function setPathStructure(){
-		global $config;
-		$this->pathStructure = $config->baseUrlEnd;
+		$this->pathStructure = $this->config->baseUrlEnd;
 	}
 	public function getRoute($path) {
-		$uri = $_SERVER['REQUEST_URI'];
+		$uri = $_SERVER['REQUEST_URI'] ?? '';
 	
 		// Check if there is a query string, and split the URI if needed
 		if (strpos($uri, '?') !== false) {
@@ -67,7 +76,7 @@ class Handler
 	 */
 	public function getControllerModel() {
 		// Error handling if the controller class does not exist
-		$className = "Controllers\\" . ucwords($this->controller);
+		$className = "Src\Controllers\\" . ucwords($this->controller);
 		if (!class_exists($className)) {
 			return null;
 		}
@@ -100,7 +109,6 @@ class Handler
 	 * @return array Returns an array of URL segments after the action.
 	 */
 	public function getUrldata() : array {
-		global $config;
 		$result=[
 			'controller' => $this->controller,
 			'action' => $this->action,
@@ -108,7 +116,7 @@ class Handler
 		$url = $_SERVER['REQUEST_URI'];
 	
 		// Remove the base path and query string from the URL
-		$path = str_replace($config->baseUrlEnd, '', parse_url($url, PHP_URL_PATH));
+		$path = str_replace($this->config->baseUrlEnd, '', parse_url($url, PHP_URL_PATH));
 	
 		// Split the URL into segments
 		$segments = explode('/', $path);
@@ -130,8 +138,7 @@ class Handler
      * @return bool Returns true if the CSS file exists, false otherwise.
      */
     public function isCssDefined() {
-		global $config;
-        $cssFilePath =  $config->basePath. "/assets/css/" . $this->controller . ".css";
+        $cssFilePath =  $this->config->basePath. "/assets/css/" . $this->controller . ".css";
         return file_exists($cssFilePath);
     }
 
@@ -141,16 +148,41 @@ class Handler
      * @return bool Returns true if the JS file exists, false otherwise.
      */
     public function isJsDefined() {
-		global $config;
-        $jsFilePath = $config->basePath . "/assets/js/" . $this->controller . ".js";
+        $jsFilePath = $this->config->basePath . "/assets/js/" . $this->controller . ".js";
         return file_exists($jsFilePath);
     }
 	public function isCacheEnabled(){
-		global $config;
-		if ($config->isProduction == 'no' && isset($config->isProduction)) {
+		if ($this->config->isProduction == 'no' && isset($this->config->isProduction)) {
 			return '?'.time();
 		} else {
 			return '';
 		}
 	}
+
+    /**
+     * Gets the single instance of the Handler class.
+     *
+     * @return Handler The single instance of the Handler class
+     */
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new Handler();
+        }
+
+        return self::$instance;
+    }
+
+    // ... (rest of your methods)
+
+    // Prevent cloning of the instance
+    private function __clone() {}
+
+    /**
+     * Prevents unserialization of the instance.
+     * 
+     * @throws \Exception If someone tries to unserialize the instance.
+     */
+    public function __wakeup() {
+        throw new \Exception("Cannot unserialize a singleton.");
+    }
 }
