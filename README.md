@@ -64,7 +64,7 @@ Now you are ready to run the project.
 12. You can use the custom made **ApiHelper** to do basic Get, Post, Put, Patch, Delete.
 13. You can use the custom made mysql query builder which can be found in utility folder. Checkout `SqlBuilder.php`
 14. You can use **DebugLogger** utility to log your backend data into a log file. Example of usage can be found in the DebugLogger.php file. If used the logs can be found in logs/apps.log file
-15. **Phpunit** is installed so you can use that to do unit testing. The config file is in phpunit.xml and the Tests should be stated in Tests/<controllername>Test.php. After that just do `./vendor/bin/phpunit` from you root and you can see tests. Checkout Tests/IndexTest.php
+15. **Pest Phpunit tester** is installed so you can use that to do unit testing. Tests created in Tests/Unit directory. After that just do `./vendor/bin/pest` from you root and you can see tests. Checkout Tests/Unit/ExampleTestphp.php
 16. **PhpStan** is installed so you are able to catch bugs before it goes to production. Do an automatic testing to your backend by running commad `./vendor/bin/phpstan analyse src/` also level of security check can be increased to 8. Can be found in phpstan.neon
 17. **Dotenv** is installed so .env file can be used as well.
 18. You can also add actions into the controller. for instance if you have "/something/somethingmore" the `something` is the controller. And in the controller file just do `somethingmoreAction` meaning add Action word at the end of the text and define that a function. and now you have an action inside the controller.
